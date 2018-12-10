@@ -1,33 +1,9 @@
+"""
+This script loads in the training data and transforms it so that it can be used to trian models.
+"""
+
 import pandas as pd
-
-features = [
-'SalesID' ,      # Always included as key for predictions
-'ModelID' ,
-'YearMade' ,
-'ProductSize',
-'ProductGroup',
-'Enclosure',
-'Enclosure_Type',
-'Hydraulics',
-'Tire_Size',
-]
-
-DUMMY_FEATS = { # list all categorical features
-                'UsageBand', 'fiModelDesc',
-                'fiBaseModel', 'fiSecondaryDesc', 'fiModelSeries',
-                'fiModelDescriptor', 'ProductSize', 'fiProductClassDesc',
-                'state', 'ProductGroup', 'ProductGroupDesc',
-                'Drive_System', 'Enclosure', 'Forks',
-                'Pad_Type', 'Ride_Control', 'Stick',
-                'Transmission', 'Turbocharged', 'Blade_Extension',
-                'Blade_Width', 'Enclosure_Type', 'Engine_Horsepower',
-                'Hydraulics', 'Pushblock', 'Ripper',
-                'Scarifier', 'Tip_Control', 'Tire_Size',
-                'Coupler', 'Coupler_System', 'Grouser_Tracks',
-                'Hydraulics_Flow', 'Track_Type', 'Undercarriage_Pad_Width',
-                'Stick_Length', 'Thumb', 'Pattern_Changer',
-                'Grouser_Type', 'Backhoe_Mounting', 'Blade_Type',
-                'Travel_Controls', 'Differential_Type', 'Steering_Controls'}
+from sklearn.model_selection import train_test_split
 
 def one_hot(input_df, columns):
     """
@@ -113,68 +89,43 @@ def clean_features(dataframe, features, target=None, fill=None):
 ##################################################################
 if __name__ == "__main__":
     
-    # load the data
-    df = pd.read_csv("data/Train.csv")
-    
     features = [
-        'SalesID' ,
-        'MachineID' ,
-        'ModelID' ,
-        # 'datasource' ,
-        'auctioneerID' ,
-        'YearMade' ,
-        # 'MachineHoursCurrentMeter',
-        # 'UsageBand',
-        # 'saledate',    # BE CAREFUL
-        'fiModelDesc',
-        # 'fiBaseModel',
-        # 'fiSecondaryDesc',
-        # 'fiModelSeries',
-        # 'fiModelDescriptor',
-        # 'ProductSize',
-        # 'fiProductClassDesc',
-        # 'state',
-        # 'ProductGroup',
-        # 'ProductGroupDesc',
-        # 'Drive_System',
-        # 'Enclosure',
-        # 'Forks',
-        # 'Pad_Type',
-        # 'Ride_Control',
-        # 'Stick',
-        # 'Transmission',
-        # 'Turbocharged',
-        # 'Blade_Extension',
-        # 'Blade_Width',
-        # 'Enclosure_Type',
-        # 'Engine_Horsepower',
-        # 'Hydraulics',
-        # 'Pushblock',
-        # 'Ripper',
-        # 'Scarifier',
-        # 'Tip_Control',
-        # 'Tire_Size',
-        # 'Coupler',
-        # 'Coupler_System',
-        # 'Grouser_Tracks',
-        # 'Hydraulics_Flow',
-        # 'Track_Type',
-        # 'Undercarriage_Pad_Width',
-        # 'Stick_Length',
-        # 'Thumb',
-        # 'Pattern_Changer',
-        # 'Grouser_Type',
-        # 'Backhoe_Mounting',
-        # 'Blade_Type',
-        # 'Travel_Controls',
-        # 'Differential_Type',
-        # 'Steering_Controls'
-    ]
+        'SalesID',      # Always included as key for predictions
+        'MachineID',
+        'ModelID',      # These features were selected via RFE
+        'YearMade',
+        'MachineHoursCurrentMeter',
+        'UsageBand',
+        'ProductSize',
+        'ProductGroup',
+        'Enclosure',
+        'Enclosure_Type',
+        'Hydraulics',
+        'Tire_Size',
+        ]
 
-    X_df, y_df = clean_features(df, ['YearMade', 'MachineID', 'ModelID', 'MachineHoursCurrentMeter', 'UsageBand'], 'SalePrice')
+    DUMMY_FEATS = { # list all categorical features
+                'UsageBand', 'fiModelDesc',
+                'fiBaseModel', 'fiSecondaryDesc', 'fiModelSeries',
+                'fiModelDescriptor', 'ProductSize', 'fiProductClassDesc',
+                'state', 'ProductGroup', 'ProductGroupDesc',
+                'Drive_System', 'Enclosure', 'Forks',
+                'Pad_Type', 'Ride_Control', 'Stick',
+                'Transmission', 'Turbocharged', 'Blade_Extension',
+                'Blade_Width', 'Enclosure_Type', 'Engine_Horsepower',
+                'Hydraulics', 'Pushblock', 'Ripper',
+                'Scarifier', 'Tip_Control', 'Tire_Size',
+                'Coupler', 'Coupler_System', 'Grouser_Tracks',
+                'Hydraulics_Flow', 'Track_Type', 'Undercarriage_Pad_Width',
+                'Stick_Length', 'Thumb', 'Pattern_Changer',
+                'Grouser_Type', 'Backhoe_Mounting', 'Blade_Type',
+                'Travel_Controls', 'Differential_Type', 'Steering_Controls'}
 
+    # load the data
+    df = pd.read_csv("data/raw/Train.csv")
+    
     # Preprocess features and target
-    X_df, y_df = m.clean_features(df, features, 'SalePrice')
+    X_df, y_df = clean_features(df, features, 'SalePrice')
 
     # Save list of dummy variables and numeric features
     trained_features = list(X_df.columns)
@@ -186,3 +137,10 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = train_test_split(X_df, y_df)
 
     # write out the transformed data
+    X_train.to_csv('data/processed/X_train.csv')
+    y_train.to_csv('data/processed/y_train.csv')
+    X_test.to_csv('data/processed/X_test.csv')
+    y_test.to_csv('data/processed/y_test.csv')
+    X_sid.to_csv('data/processed/X_sid.csv')
+
+    
