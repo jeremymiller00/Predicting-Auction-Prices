@@ -143,4 +143,6 @@ if __name__ == "__main__":
     y_test.to_csv('data/processed/y_test.csv')
     X_sid.to_csv('data/processed/X_sid.csv')
 
-    
+    '''
+    A separate final validation dataset already exists in data/raw for final model evaluation
+    '''
