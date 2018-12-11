@@ -13,16 +13,19 @@ Our unitial regression model performed reasonable well. We achieved a RMSE of ~$
 
 The improve the model we performed Recursive Feature Elimination with Cross-Validation to limit the feature space and reduce multicolinearity. Given that the base model was a regression analysis and the dataset was not huge, it was feasable though expensive to run this analysis.  
 
-One the feature space was reduced we trained a Ridge Regression model and inspected the results.
+One the feature space was reduced we trained Ridge and Lasso Regression model and inspected the results.
 
+## Ridge
 ![residual](reports/figures/ridge/ridge_target_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/ridge/ridge_modelid_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/ridge/ridge_year_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/ridge/ridge_qq_plot.png "Baseline Model Residuals")
 
-
-
+## Lasso
 ![residual](reports/figures/lasso/lasso_target_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/lasso/lasso_modelid_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/lasso/lasso_year_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/lasso/lasso_qq_plot.png "Baseline Model Residuals")
+
+## Conclusion
+Each linear model has its strengths with this dataset. After acquiring better data, it would be worthwhile to explore tree-based models to find a potential non-linear solution. In the meantime, the Ridge regresssion appears to offer a minimum viable solutions.
