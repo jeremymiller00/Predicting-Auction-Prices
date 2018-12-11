@@ -11,4 +11,18 @@ Our unitial regression model performed reasonable well. We achieved a RMSE of ~$
 ![residual](reports/figures/baseline/year_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/baseline/bl_qq_plot.png "Baseline Model Residuals")
 
-The improve the model we performed Recursive Feature Elimination with Cross-Validation to limit the feature space and reduce multicolinearity.
+The improve the model we performed Recursive Feature Elimination with Cross-Validation to limit the feature space and reduce multicolinearity. Given that the base model was a regression analysis and the dataset was not huge, it was feasable though expensive to run this analysis.  
+
+One the feature space was reduced we trained a Ridge Regression model and inspected the results.
+
+![residual](reports/figures/ridge/ridge_target_resid.png "Baseline Model Residuals")
+![residual](reports/figures/ridge/ridge_modelid_resid.png "Baseline Model Residuals")
+![residual](reports/figures/ridge/ridge_year_resid.png "Baseline Model Residuals")
+![residual](reports/figures/ridge/ridge_qq_plot.png "Baseline Model Residuals")
+
+
+
+![residual](reports/figures/lasso/lasso_target_resid.png "Baseline Model Residuals")
+![residual](reports/figures/lasso/lasso_modelid_resid.png "Baseline Model Residuals")
+![residual](reports/figures/lasso/lasso_year_resid.png "Baseline Model Residuals")
+![residual](reports/figures/lasso/lasso_qq_plot.png "Baseline Model Residuals")
