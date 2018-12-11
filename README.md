@@ -10,3 +10,5 @@ Our unitial regression model performed reasonable well. We achieved a RMSE of ~$
 ![residual](reports/figures/baseline/model_id_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/baseline/year_resid.png "Baseline Model Residuals")
 ![residual](reports/figures/baseline/bl_qq_plot.png "Baseline Model Residuals")
+
+The improve the model we performed Recursive Feature Elimination with Cross-Validation to limit the feature space and reduce multicolinearity.
